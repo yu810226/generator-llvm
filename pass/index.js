@@ -103,6 +103,26 @@ module.exports = class extends Generator {
       type: 'input',
       message: 'Short name for the pass',
       default: (ans) => ans.passName.toLowerCase()
+    },
+    {
+      name: 'passModifyCFG',
+      type: 'list',
+      message: 'Modify CFG',
+      choices: [
+        'true',
+        'false'
+      ],
+      default: 'false'
+    },
+    {
+      name: 'passDoAnalysis',
+      type: 'list',
+      message: 'Do analysis',
+      choices: [
+        'true',
+        'false'
+      ],
+      default: 'false'
     }
     ];
     if(this.options["new-pm"] === true)
@@ -138,6 +158,8 @@ module.exports = class extends Generator {
                             answers.passDescription :
                             'Description for ' + sub.name;
       sub.shortHand = answers.passShortHand;
+      sub.modifyCFG = answers.passModifyCFG;
+      sub.doAnalysis = answers.passDoAnalysis;
       return answers;
     }
 
@@ -246,6 +268,8 @@ module.exports = class extends Generator {
             passScope: sub.scope,
             scopeShortHand: this.scopeShorts[sub.scope],
             passShortHand: sub.shortHand,
+            passModifyCFG: sub.modifyCFG,
+            passDoAnalysis: sub.doAnalysis,
             passDescription: sub.description
           }
         );

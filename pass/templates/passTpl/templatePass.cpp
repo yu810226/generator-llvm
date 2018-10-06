@@ -18,8 +18,8 @@ char <%= passName %>::ID = 0;
 static 
 RegisterPass<<%= passName %>> X("<%= passShortHand %>",
                                 "<%= passDescription %>",
-                                false /*Only Look At CFG*/,
-                                false /*Is Analysis Pass*/);
+                                <%= passModifyCFG %>,
+                                <%= passDoAnalysis %>);
 
 
 
